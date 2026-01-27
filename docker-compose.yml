@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: zim-wedding-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: zimwedding
+      POSTGRES_PASSWORD: zimwedding_password
+      POSTGRES_DB: zim_wedding_platform
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - zim-wedding-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zimwedding -d zim_wedding_platform"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/Dockerfile.backend
+    container_name: zim-wedding-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: development
+      PORT: 5000
+      DATABASE_URL: postgresql://zimwedding:zimwedding_password@db:5432/zim_wedding_platform
+      JWT_SECRET: dev_jwt_secret_change_in_production
+      CORS_ORIGIN: http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - zim-wedding-network
+    command: npm run dev
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    container_name: zim-wedding-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - zim-wedding-network
+    stdin_open: true
+    tty: true
+    command: npm start
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  zim-wedding-network:
+    driver: bridge
