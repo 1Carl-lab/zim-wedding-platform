@@ -1,5 +1,11 @@
 {
   "name": "zim-wedding-platform-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "React.js frontend for Zimbabwe Wedding Platform",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
   "version": "1.0.0",
   "description": "Frontend for Zimbabwe Wedding Platform",
   "private": true,
