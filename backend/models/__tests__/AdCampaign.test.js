@@ -1,4 +1,4 @@
-const AdCampaign = require('../models/AdCampaign');
+const AdCampaign = require('../AdCampaign');
 
 // Mock test data
 const mockCampaignData = {

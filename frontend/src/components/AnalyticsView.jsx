@@ -9,27 +9,27 @@ const AnalyticsView = ({ campaigns, analytics, advertiserId }) => {
   const [selectedCampaign, setSelectedCampaign] = useState('all');
 
   useEffect(() => {
+    const fetchPerformanceData = async () => {
+      try {
+        const params = {
+          days: selectedPeriod
+        };
+
+        if (selectedCampaign !== 'all') {
+          params.campaignId = selectedCampaign;
+        }
+
+        const response = await analyticsService.getPerformanceOverTime(params);
+        if (response.success) {
+          setPerformanceData(response.data.metrics);
+        }
+      } catch (error) {
+        console.error('Error fetching performance data:', error);
+      }
+    };
+
     fetchPerformanceData();
   }, [selectedPeriod, selectedCampaign]);
-
-  const fetchPerformanceData = async () => {
-    try {
-      const params = {
-        days: selectedPeriod
-      };
-      
-      if (selectedCampaign !== 'all') {
-        params.campaignId = selectedCampaign;
-      }
-
-      const response = await analyticsService.getPerformanceOverTime(params);
-      if (response.success) {
-        setPerformanceData(response.data.metrics);
-      }
-    } catch (error) {
-      console.error('Error fetching performance data:', error);
-    }
-  };
 
   if (!analytics) {
     return <div className="loading">Loading analytics...</div>;
