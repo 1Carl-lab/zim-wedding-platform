@@ -184,6 +184,36 @@ Each component has its own README with detailed information:
 3. Commit and push changes
 4. Deploy to staging/production
 
+## 🚀 Netlify Deployment (Frontend)
+
+This repository contains a React frontend in `frontend/` that can be deployed to Netlify as a static site.
+
+### Build Settings
+
+- **Base directory**: `frontend`
+- **Build command**: `npm run build`
+- **Publish directory**: `frontend/build`
+
+### Required Environment Variables
+
+Set the API base URL for the backend in Netlify:
+
+```env
+REACT_APP_API_URL=https://your-backend-domain.com/api
+```
+
+### Single Page App Routing
+
+This repo includes `frontend/public/_redirects` so Netlify can serve client-side routes:
+
+```
+/*    /index.html   200
+```
+
+### Backend Hosting
+
+Netlify hosts the frontend only. Deploy the backend separately (Docker/Render/Railway/etc.) and update `REACT_APP_API_URL` to match.
+
 ## 🌍 Future Enhancements
 
 - Regional expansion across Southern Africa
