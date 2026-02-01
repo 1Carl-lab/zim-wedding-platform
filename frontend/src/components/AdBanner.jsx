@@ -7,32 +7,32 @@ const AdBanner = ({ placement = 'homepage', adType = 'banner' }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchAd = async () => {
+      try {
+        // Fetch active ads for this placement
+        const response = await adService.getAllCampaigns({
+          status: 'active',
+          adPlacement: placement,
+          adType: adType
+        });
+
+        if (response.success && response.data.length > 0) {
+          // Get a random active ad from the results
+          const randomAd = response.data[Math.floor(Math.random() * response.data.length)];
+          setAd(randomAd);
+
+          // Record impression
+          await adService.recordImpression(randomAd._id);
+        }
+      } catch (error) {
+        console.error('Error fetching ad:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchAd();
   }, [placement, adType]);
-
-  const fetchAd = async () => {
-    try {
-      // Fetch active ads for this placement
-      const response = await adService.getAllCampaigns({
-        status: 'active',
-        adPlacement: placement,
-        adType: adType
-      });
-
-      if (response.success && response.data.length > 0) {
-        // Get a random active ad from the results
-        const randomAd = response.data[Math.floor(Math.random() * response.data.length)];
-        setAd(randomAd);
-        
-        // Record impression
-        await adService.recordImpression(randomAd._id);
-      }
-    } catch (error) {
-      console.error('Error fetching ad:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleAdClick = async () => {
     if (ad && ad._id) {
