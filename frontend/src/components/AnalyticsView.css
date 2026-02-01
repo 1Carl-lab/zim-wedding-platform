@@ -1,0 +1,193 @@
+.analytics-view {
+  padding: 0;
+}
+
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.analytics-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.analytics-filters {
+  display: flex;
+  gap: 12px;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95em;
+  cursor: pointer;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.metric-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.metric-icon {
+  font-size: 2em;
+  opacity: 0.9;
+}
+
+.metric-content h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.9em;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.metric-value {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+.metric-content small {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+.analytics-section {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.analytics-section h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+}
+
+.status-breakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.status-label {
+  color: #666;
+  font-size: 0.95em;
+}
+
+.status-count {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.chart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container h4 {
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.top-campaigns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.campaign-performance {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.campaign-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.campaign-name strong {
+  color: #333;
+}
+
+.campaign-stats {
+  display: flex;
+  gap: 15px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.ctr-badge {
+  padding: 2px 8px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.loading {
+  padding: 40px;
+  text-align: center;
+  color: #666;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .analytics-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .analytics-filters {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campaign-stats {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

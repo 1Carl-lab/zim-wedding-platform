@@ -11,5 +11,7 @@ yarn-error.log*
 /coverage
 
 # Misc
+node_modules/
+.env
 .DS_Store
 *.log

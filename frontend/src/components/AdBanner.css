@@ -1,0 +1,90 @@
+.ad-banner-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.ad-banner {
+  position: relative;
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ad-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ad-banner-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ad-banner-content {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-banner-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ad-banner:hover .ad-banner-overlay {
+  opacity: 1;
+}
+
+.ad-banner-overlay h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.2em;
+}
+
+.ad-banner-overlay p {
+  margin: 0;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.ad-label {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ad-banner-placeholder {
+  padding: 40px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  text-align: center;
+  color: #999;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .ad-banner-overlay h3 {
+    font-size: 1em;
+  }
+  
+  .ad-banner-overlay p {
+    font-size: 0.8em;
+  }
+}
