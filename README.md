@@ -508,6 +508,17 @@ curl http://localhost:5000/api/ads/analytics/overall
 5. Configure SSL/TLS
 6. Set up CDN for static assets
 
+## Deployment Readiness Update (Next Actions)
+
+Before deploying, the following repository-specific actions should be completed to unblock a production release:
+
+1. Fix invalid `package.json` files in `backend/` and `frontend/` (duplicate keys currently prevent `npm install`, `npm test`, and `npm run build`).
+2. Decide on the primary database (PostgreSQL vs MongoDB) and align Docker, environment variables, and documentation to one stack.
+3. Replace placeholder authentication with JWT-based auth middleware as referenced in API documentation.
+4. Replace placeholder Stripe/Paynow handlers with production payment integrations and secure webhook verification.
+5. Configure production environment variables (database URL, JWT secret, CORS origin) and secrets management.
+6. Produce a frontend production build (`npm run build`) and configure a static hosting path or container for the build output.
+
 ## Security Considerations
 
 - Sanitize all user inputs
